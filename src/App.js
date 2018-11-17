@@ -1,10 +1,34 @@
 import React, { Component } from "react";
-import { Section, Hero, Container, Title, SubTitle, Content } from "reactbulma";
+import { Section, Textarea } from "reactbulma";
+
 import Copy from "./Copy";
+import MarkdownInput from "./MarkdownInput";
+import LetterRender from "./LetterRender";
+import { Provider } from "./Context";
 
 class App extends Component {
+    state = {
+        markdown: "",
+        onChangeMarkdown: event =>
+            this.setState({ markdown: event.target.value })
+    };
+
     render() {
-        return <Copy.Hero />;
+        return (
+            <React.Fragment>
+                <Copy.Hero />
+                <Provider value={this.state}>
+                    <Section style={{ display: "flex" }}>
+                        <Section style={{ flexGrow: 1 }}>
+                            <MarkdownInput />
+                        </Section>
+                        <Section style={{ flexGrow: 1 }}>
+                            <LetterRender />
+                        </Section>
+                    </Section>
+                </Provider>
+            </React.Fragment>
+        );
     }
 }
 

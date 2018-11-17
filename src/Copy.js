@@ -1,5 +1,5 @@
 import React from "react";
-import { Section, Hero, Container, Title, SubTitle, Content } from "reactbulma";
+import { Hero, Container, Title, SubTitle, Content } from "reactbulma";
 
 export const MyHero = () => (
     <Hero>
