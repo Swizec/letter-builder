@@ -1,12 +1,15 @@
 import React from "react";
-import { Textarea } from "reactbulma";
+import { Textarea, Heading } from "reactbulma";
 
 import { Consumer } from "./Context";
 
 export default () => (
     <Consumer>
         {({ markdown, onChangeMarkdown }) => (
-            <Textarea onChange={onChangeMarkdown}>{markdown}</Textarea>
+            <React.Fragment>
+                <Heading>Markdown</Heading>
+                <Textarea onChange={onChangeMarkdown}>{markdown}</Textarea>
+            </React.Fragment>
         )}
     </Consumer>
 );
