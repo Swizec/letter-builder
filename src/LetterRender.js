@@ -4,10 +4,11 @@ import showdown from "showdown";
 import "showdown-twitter";
 
 import { Consumer } from "./Context";
+import TwitterScreenshot from "./showdown/TwitterScreenshot";
 
 export default () => {
     const converter = new showdown.Converter({
-        extensions: ["twitter"]
+        extensions: ["twitter", TwitterScreenshot]
     });
 
     return (

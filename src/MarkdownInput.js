@@ -8,7 +8,7 @@ export default () => (
         {({ markdown, onChangeMarkdown }) => (
             <React.Fragment>
                 <Heading>Markdown</Heading>
-                <Textarea onChange={onChangeMarkdown}>{markdown}</Textarea>
+                <Textarea onChange={onChangeMarkdown} value={markdown} />
             </React.Fragment>
         )}
     </Consumer>
