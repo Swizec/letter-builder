@@ -28,7 +28,7 @@ const copyToClipboard = str => {
 
 export default class ExportButton extends React.Component {
     state = {
-        showModal: true
+        showModal: false
     };
 
     export = (markdown, letterRef) => {
@@ -41,10 +41,11 @@ export default class ExportButton extends React.Component {
         copyToClipboard(html);
 
         this.setState({ showModal: true });
+    };
 
-        // alert(
-        //     "Letter copied to clipboard. Use Cmd+V in your favorite email sending app 💌"
-        // );
+    closeModal = () => {
+        console.log("HELLO");
+        this.setState({ showModal: false });
     };
 
     render() {
@@ -68,7 +69,20 @@ export default class ExportButton extends React.Component {
                         </Section>
                     )}
                 </Consumer>
-                <ReactModal isOpen={showModal}>
+                <ReactModal
+                    isOpen={showModal}
+                    style={{
+                        content: {
+                            background: "rgb(241, 245, 248)",
+                            maxWidth: 680,
+                            margin: "0 auto"
+                        }
+                    }}
+                    shouldCloseOnOverlayClick={true}
+                    shouldCloseOnEsc={true}
+                    shouldReturnFocusAfterClose={true}
+                    onRequestClose={this.closeModal}
+                >
                     <Section
                         style={{
                             display: "flex",
