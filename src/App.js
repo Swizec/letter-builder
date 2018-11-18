@@ -17,10 +17,19 @@ class App extends Component {
 
     render() {
         return (
-            <React.Fragment>
+            <div
+                style={{
+                    display: "grid",
+                    gridTemplateColumns: "1fr",
+                    gridTemplateRows: "0.1fr 1.5fr 0.1fr",
+                    gridTemplateAreas: "'.' '.' '.'"
+                }}
+            >
                 <Copy.Hero />
                 <Provider value={this.state}>
-                    <Section style={{ display: "flex", paddingTop: 0 }}>
+                    <Section
+                        style={{ display: "flex", paddingTop: 0, flexGrow: 1 }}
+                    >
                         <Section style={{ flexGrow: 1, width: "50%" }}>
                             <MarkdownInput />
                         </Section>
@@ -29,7 +38,8 @@ class App extends Component {
                         </Section>
                     </Section>
                 </Provider>
-            </React.Fragment>
+                <Copy.Footer />
+            </div>
         );
     }
 }
