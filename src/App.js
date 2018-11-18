@@ -6,6 +6,8 @@ import MarkdownInput from "./MarkdownInput";
 import LetterRender from "./LetterRender";
 import { Provider } from "./Context";
 
+import "./App.css";
+
 class App extends Component {
     state = {
         markdown: "",
