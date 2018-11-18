@@ -5,7 +5,8 @@ import "showdown-twitter";
 import { Markdown } from "react-showdown";
 
 import { Consumer } from "./Context";
-import TwitterScreenshot from "./showdown/TwitterScreenshot";
+import Screenshot from "./showdown/Screenshot";
+import Image from "./showdown/Image";
 
 export default () => {
     // const converter = new showdown.Converter({
@@ -22,10 +23,12 @@ export default () => {
                             markup={markdown}
                             extensions={[
                                 "twitter",
-                                TwitterScreenshot.extension
+                                Screenshot.extension,
+                                Image.extension
                             ]}
                             components={{
-                                TwitterScreenshot: TwitterScreenshot.Component
+                                Screenshot: Screenshot.Component,
+                                Image: Image.Component
                             }}
                         />
                     </Content>

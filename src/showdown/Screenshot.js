@@ -1,15 +1,18 @@
 import React from "react";
 
+// https://twitter.com/thepatwalls/status/1064024065961119745
+// https://www.youtube.com/watch?v=pwkYP4iFt5Y
+
 export const extension = function() {
-    const twitter = {
+    const screenshot = {
         type: "lang",
-        regex: /\[((http|https):\/\/(www){0,1}twitter.com\/(.+))\]/g,
+        regex: /\[((http|https):\/\/(www.){0,1}(twitter.com|youtube.com|youtu.be)\/(.+))\]/g,
         replace: function(match, url) {
-            return `<TwitterScreenshot tweet="${url}" />`;
+            return `<Screenshot src="${url}" />`;
         }
     };
 
-    return [twitter];
+    return [screenshot];
 };
 
 export class Component extends React.Component {
@@ -18,11 +21,11 @@ export class Component extends React.Component {
     };
 
     async componentDidMount() {
-        const { tweet } = this.props;
+        const { src } = this.props;
 
         try {
             const res = await fetch(
-                    `https://84wz7ux5rc.execute-api.us-east-1.amazonaws.com/default/screenshot-as-a-service-dev-screenshot-function?url=${tweet}`
+                    `https://84wz7ux5rc.execute-api.us-east-1.amazonaws.com/default/screenshot-as-a-service-dev-screenshot-function?url=${src}`
                 ),
                 url = await res.text();
 
@@ -34,15 +37,11 @@ export class Component extends React.Component {
 
     render() {
         const { image } = this.state,
-            { tweet } = this.props;
+            { src } = this.props;
 
         return (
-            <a href={tweet} target="_blank" rel="noopener noreferrer">
-                <img
-                    src={image}
-                    style={{ maxWidth: 480 }}
-                    alt={`Tweet from ${tweet}`}
-                />
+            <a href={src} target="_blank" rel="noopener noreferrer">
+                <img src={image} style={{ maxWidth: 480 }} alt={src} />
             </a>
         );
     }

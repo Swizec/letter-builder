@@ -18,7 +18,7 @@ class App extends Component {
             <React.Fragment>
                 <Copy.Hero />
                 <Provider value={this.state}>
-                    <Section style={{ display: "flex" }}>
+                    <Section style={{ display: "flex", paddingTop: 0 }}>
                         <Section style={{ flexGrow: 1 }}>
                             <MarkdownInput />
                         </Section>
