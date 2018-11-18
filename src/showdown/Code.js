@@ -33,7 +33,7 @@ export const extension = function() {
         }
 
         match = htmlunencode(match);
-        return `<Code src="${match}" codeType="${lang}" />`;
+        return `<Code src="${btoa(match)}" codeType="${lang}" />`;
     }
 
     const screenshot = {
@@ -62,9 +62,7 @@ export class Component extends React.Component {
 
         try {
             const res = await fetch(
-                    `https://84wz7ux5rc.execute-api.us-east-1.amazonaws.com/default/screenshot-as-a-service-dev-screenshot-function?type=code&code=${btoa(
-                        src
-                    )}&codeType=${codeType}`
+                    `https://84wz7ux5rc.execute-api.us-east-1.amazonaws.com/default/screenshot-as-a-service-dev-screenshot-function?type=code&code=${src}&codeType=${codeType}`
                 ),
                 url = await res.text();
 
@@ -74,12 +72,20 @@ export class Component extends React.Component {
         }
     }
 
+    get url() {
+        const { src, codeType } = this.props;
+
+        return `https://carbon.now.sh/?bg=rgba(255,255,255,1)&t=seti&l=${codeType}&ds=true&wc=true&wa=true&pv=48px&ph=32px&ln=false&code=${encodeURIComponent(
+            atob(src)
+        )}`;
+    }
+
     render() {
         const { image } = this.state,
-            { src, caption } = this.props;
+            { caption } = this.props;
 
         return (
-            <a href={src} target="_blank" rel="noopener noreferrer">
+            <a href={this.url} target="_blank" rel="noopener noreferrer">
                 <img src={image} alt={caption} />
             </a>
         );
