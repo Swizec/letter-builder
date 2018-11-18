@@ -3,18 +3,13 @@ import { Content, Heading } from "reactbulma";
 import showdown from "showdown";
 import "showdown-twitter";
 import { Markdown } from "react-showdown";
-import "showdown-highlightjs-extension";
-import "highlight.js/styles/tomorrow-night-bright.css";
 
 import { Consumer } from "./Context";
 import Screenshot from "./showdown/Screenshot";
 import Image from "./showdown/Image";
+import Code from "./showdown/Code";
 
 export default () => {
-    // const converter = new showdown.Converter({
-    //     extensions: ["twitter", TwitterScreenshot]
-    // });
-
     return (
         <Consumer>
             {({ markdown }) => (
@@ -25,13 +20,14 @@ export default () => {
                             markup={markdown}
                             extensions={[
                                 "twitter",
-                                "highlightjs",
                                 Screenshot.extension,
-                                Image.extension
+                                Image.extension,
+                                Code.extension
                             ]}
                             components={{
                                 Screenshot: Screenshot.Component,
-                                Image: Image.Component
+                                Image: Image.Component,
+                                Code: Code.Component
                             }}
                         />
                     </Content>

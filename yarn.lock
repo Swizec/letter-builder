@@ -3763,14 +3763,6 @@ hex-color-regex@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/hex-color-regex/-/hex-color-regex-1.1.0.tgz#4c06fccb4602fe2602b3c93df82d7e7dbf1a8a8e"
 
-highlight.js@^9.13.1:
-  version "9.13.1"
-  resolved "https://registry.yarnpkg.com/highlight.js/-/highlight.js-9.13.1.tgz#054586d53a6863311168488a0f58d6c505ce641e"
-
-highlightjs@^9.8.0:
-  version "9.12.0"
-  resolved "https://registry.yarnpkg.com/highlightjs/-/highlightjs-9.12.0.tgz#9b84eb42a7aa8488eb69ac79fec44cf495bf72a1"
-
 hmac-drbg@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/hmac-drbg/-/hmac-drbg-1.0.1.tgz#d2745701025a6c775a6c545793ed502fc0c649a1"
@@ -7483,12 +7475,6 @@ shell-quote@1.6.1:
 shellwords@^0.1.1:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/shellwords/-/shellwords-0.1.1.tgz#d6b9181c1a48d397324c84871efbcfc73fc0654b"
-
-showdown-highlightjs-extension@^0.1.2:
-  version "0.1.2"
-  resolved "https://registry.yarnpkg.com/showdown-highlightjs-extension/-/showdown-highlightjs-extension-0.1.2.tgz#0fc90190283c1ae03fc4cccce3f1be6a5a58e4ce"
-  dependencies:
-    highlightjs "^9.8.0"
 
 showdown-twitter@^1.1.0:
   version "1.1.0"
