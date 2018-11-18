@@ -88,7 +88,7 @@ class App extends Component {
 
             copyToClipboard(html);
             alert(
-                "Letter copied to clipboard. Use Cmd+V in your favorite email sending app 💌"
+                "Letter copied to clipboard. Use Cmd+V in your favorite email sending app <span role='img' aria-label='face'>💌</span>"
             );
         }
     };
@@ -124,7 +124,7 @@ class App extends Component {
                                             success
                                             onClick={exportLetter}
                                         >
-                                            Export 📬
+                                            Export <span role="img" aria-label='face'>📬</span>
                                         </Button>
                                     </Section>
                                 )}

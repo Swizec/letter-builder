@@ -1,4 +1,6 @@
 import React from "react";
+import styled from 'styled-components';
+
 import {
     Hero,
     Container,
@@ -11,54 +13,92 @@ import {
 
 import { Consumer } from "./Context";
 
+const Wrapper = styled.div`
+background-color: #ffc600;
+background-image: linear-gradient(45deg, #ffc600 17%, #faef5e 75%);
+text-align: center;
+height: 100%;
+margin: 0;
+
+.title {
+    font-size: 80px;
+    font-weight: 900;
+}
+.subtitle {
+    font-weight: 700;
+}
+strong {
+    color: #fff;
+    background-color: red;
+    padding: .2rem;
+}
+@media (max-width: 940px) {
+    .title {
+        font-size: 60px;
+    }
+}
+`
+const WrapperFooter = styled.div`
+background-color: #363636;
+color: #fff;
+text-align: center;
+height: 100%;
+margin: 0;
+`
+
 export const MyHero = () => (
     <Hero>
+        <Wrapper>
         <Hero.Body>
             <Container>
-                <Title>Build better newsletters 💌</Title>
+                <Title>Build Better Newsletters <br></br><span role="img" aria-label='mailheart'>💌</span>
+                </Title>
                 <SubTitle>
-                    A #24hrstartup that helps you build better technical
-                    newsletters. Write markdown, get newsletter. 🧙‍
+                    A <strong>#24hrstartup</strong> that helps you build better technical
+                    newsletters. <br></br>Write markdown, get newsletter. <span role="img" aria-label='face'>🧙‍</span>
                 </SubTitle>
                 <Content>
-                    ✍ markdown left, 💌 letter result right
+                    <span role="img" aria-label='face'>✍ </span>markdown left, <span role="img" aria-label='heartmail'>💌 </span>letter result right
                     <br />
                     ⌨ live render as you type <br />
-                    🏚 [urls] change to embeds
+                    <span role="img" aria-label='face'>🏚</span> [urls] change to embeds
                 </Content>
                 <Consumer>
                     {({ tryExample }) => (
                         <Button large primary onClick={tryExample}>
-                            Try example ✍
+                            Try example <span role="img" aria-label='face'>✍</span>
                         </Button>
                     )}
                 </Consumer>
             </Container>
         </Hero.Body>
+            </Wrapper>
     </Hero>
 );
 
 export const Footer = () => (
-    <Section small style={{ display: "flex", alignItems: "flex-end" }}>
+    <WrapperFooter>
+    <Section>
         <Content style={{ flexGrow: 3 }}>
             ↔ markdown left, result right
             <br />
             ⌨ live rendering as you type <br />
             🐦 tweets turn into linked screenshots
             <br />
-            📻 videos turn into linked screenshots
+            <span role="img" aria-label='tv'>📻</span> videos turn into linked screenshots
             <br />
-            🖼 images get smallified and optimized
+            <span role="img" aria-label='box'>🖼</span>images get smallified and optimized
             <br />
-            🏗 code blocks turn into carbon.now.sh
+            <span role="img" aria-label='lever'>🏗</span>code blocks turn into carbon.now.sh
             <br />
-            🏖 codesandboxes turn into screenshots
+            <span role="img" aria-label='beach'>🏖</span> codesandboxes turn into screenshots
         </Content>
-        <Content style={{ textAlign: "right" }}>
+        <Content >
             <a href="https://24hrstartup.com">#24hrstartup</a> by{" "}
-            <a href="https://swizec.com">Swizec</a> ❤️
+            <a href="https://swizec.com">Swizec</a> <span role="img" aria-label='heart'>❤️</span>
         </Content>
     </Section>
+    </WrapperFooter>
 );
 
 export default { Hero: MyHero, Footer };
