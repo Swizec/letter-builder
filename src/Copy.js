@@ -1,4 +1,6 @@
 import React from "react";
+import styled from 'styled-components';
+
 import {
     Hero,
     Container,
@@ -11,15 +13,49 @@ import {
 
 import { Consumer } from "./Context";
 
+const Wrapper = styled.div`
+background-color: #ffc600;
+background-image: linear-gradient(45deg, #ffc600 17%, #faef5e 75%);
+text-align: center;
+height: 100%;
+margin: 0;
+
+.title {
+    font-size: 80px;
+    font-weight: 900;
+}
+.subtitle {
+    font-weight: 700;
+}
+strong {
+    color: #fff;
+    background-color: red;
+    padding: .2rem;
+}
+@media (max-width: 940px) {
+    .title {
+        font-size: 60px;
+    }
+}
+`
+const WrapperFooter = styled.div`
+background-color: #363636;
+color: #fff;
+text-align: center;
+height: 100%;
+margin: 0;
+`
+
 export const MyHero = () => (
     <Hero>
+        <Wrapper>
         <Hero.Body>
             <Container>
-                <Title>Build better newsletters <span role="img" aria-label='mailheart'>💌</span>
+                <Title>Build Better Newsletters <br></br><span role="img" aria-label='mailheart'>💌</span>
                 </Title>
                 <SubTitle>
-                    A #24hrstartup that helps you build better technical
-                    newsletters. Write markdown, get newsletter. <span role="img" aria-label='face'>🧙‍</span>
+                    A <strong>#24hrstartup</strong> that helps you build better technical
+                    newsletters. <br></br>Write markdown, get newsletter. <span role="img" aria-label='face'>🧙‍</span>
                 </SubTitle>
                 <Content>
                     <span role="img" aria-label='face'>✍ </span>markdown left, <span role="img" aria-label='heartmail'>💌 </span>letter result right
@@ -36,11 +72,13 @@ export const MyHero = () => (
                 </Consumer>
             </Container>
         </Hero.Body>
+            </Wrapper>
     </Hero>
 );
 
 export const Footer = () => (
-    <Section small style={{ display: "flex", alignItems: "flex-end" }}>
+    <WrapperFooter>
+    <Section>
         <Content style={{ flexGrow: 3 }}>
             ↔ markdown left, result right
             <br />
@@ -55,11 +93,12 @@ export const Footer = () => (
             <br />
             <span role="img" aria-label='beach'>🏖</span> codesandboxes turn into screenshots
         </Content>
-        <Content style={{ textAlign: "right" }}>
+        <Content >
             <a href="https://24hrstartup.com">#24hrstartup</a> by{" "}
             <a href="https://swizec.com">Swizec</a> <span role="img" aria-label='heart'>❤️</span>
         </Content>
     </Section>
+    </WrapperFooter>
 );
 
 export default { Hero: MyHero, Footer };

@@ -9,7 +9,8 @@
     "react-spinkit": "^3.0.0",
     "reactbulma": "^3.0.4",
     "showdown": "^1.9.0",
-    "showdown-twitter": "^1.1.0"
+    "showdown-twitter": "^1.1.0",
+    "styled-components": "^4.1.1"
   },
   "devDependencies": {
     "react-scripts": "2.1.1"

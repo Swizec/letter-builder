@@ -2,3 +2,11 @@ pre {
     background: black;
     border-radius: 5px;
 }
+
+a {
+    color: #ffc600;
+}
+
+a:hover {
+    color: #fff;
+}
