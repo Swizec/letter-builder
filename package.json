@@ -5,6 +5,7 @@
   "dependencies": {
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
+    "react-modal": "^3.6.1",
     "react-showdown": "^1.6.0",
     "react-spinkit": "^3.0.0",
     "reactbulma": "^3.0.4",

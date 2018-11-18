@@ -1,5 +1,6 @@
 import React from "react";
-import { Section, Button } from "reactbulma";
+import ReactModal from "react-modal";
+import { Hero, Container, Title, SubTitle, Section, Button } from "reactbulma";
 
 import { Consumer } from "./Context";
 
@@ -26,39 +27,75 @@ const copyToClipboard = str => {
 };
 
 export default class ExportButton extends React.Component {
+    state = {
+        showModal: true
+    };
+
     export = (markdown, letterRef) => {
         if (markdown.length === 0) {
             return alert("Nothing to export. Try writing a letter first");
         }
 
-        const html = letterRef.current.querySelector(".content > div")
-            .innerHTML;
+        const html = letterRef.current.querySelector(".content").innerHTML;
 
         copyToClipboard(html);
 
-        alert(
-            "Letter copied to clipboard. Use Cmd+V in your favorite email sending app 💌"
-        );
+        this.setState({ showModal: true });
+
+        // alert(
+        //     "Letter copied to clipboard. Use Cmd+V in your favorite email sending app 💌"
+        // );
     };
 
     render() {
+        const { showModal } = this.state;
+
         return (
-            <Consumer>
-                {({ markdown, letterRef }) => (
-                    <Section style={{ textAlign: "right" }} medium>
-                        <Button
-                            large
-                            success
-                            onClick={() => this.export(markdown, letterRef)}
+            <div>
+                <Consumer>
+                    {({ markdown, letterRef }) => (
+                        <Section style={{ textAlign: "right" }} medium>
+                            <Button
+                                large
+                                success
+                                onClick={() => this.export(markdown, letterRef)}
+                            >
+                                Export{" "}
+                                <span role="img" aria-label="face">
+                                    📬
+                                </span>
+                            </Button>
+                        </Section>
+                    )}
+                </Consumer>
+                <ReactModal isOpen={showModal}>
+                    <Section
+                        style={{
+                            display: "flex",
+                            flexDirection: "column",
+                            background: "rgb(241, 245, 248)",
+                            padding: 0,
+                            height: "100%"
+                        }}
+                    >
+                        <Section
+                            style={{ paddingBottom: 25, textAlign: "center" }}
                         >
-                            Export{" "}
-                            <span role="img" aria-label="face">
-                                📬
-                            </span>
-                        </Button>
+                            <Title>Letter copied to clipboard.</Title>
+                            <SubTitle>
+                                Use Cmd+V in your favorite email sending app 💌
+                                <br />
+                                <br />⏳ Saved some time? Consider supporting
+                                this free tool 👇
+                            </SubTitle>
+                        </Section>
+                        <iframe
+                            src="https://checkoutpage.co/checkout/5bf1f1de674864001494c292/techletter-app--build-better-newsletters--"
+                            style={{ flexGrow: 1 }}
+                        />
                     </Section>
-                )}
-            </Consumer>
+                </ReactModal>
+            </div>
         );
     }
 }
