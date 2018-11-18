@@ -1,6 +1,5 @@
 import React from "react";
 import { Content, Heading } from "reactbulma";
-import showdown from "showdown";
 import "showdown-twitter";
 import { Markdown } from "react-showdown";
 
@@ -13,7 +12,7 @@ export default React.forwardRef((props, ref) => (
     <Consumer>
         {({ markdown }) => (
             <div ref={ref}>
-                <Heading>Rendered 💌</Heading>
+                <Heading>Rendered <span role="img" aria-label='face'> 💌</span></Heading>
                 <Content>
                     <Markdown
                         markup={markdown}

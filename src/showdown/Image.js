@@ -6,7 +6,7 @@ import React from "react";
 export const extension = function() {
     const screenshot = {
         type: "lang",
-        regex: /\!\[(.*)\]\((http(s){0,1}:\/\/(.+))\)/g,
+        regex: /!\[(.*)\]\((http(s){0,1}:\/\/(.+))\)/g,
         replace: function(match, caption, url) {
             return `<Image src="${url}" caption="${caption}" />`;
         }
