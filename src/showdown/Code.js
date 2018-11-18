@@ -25,8 +25,11 @@ export const extension = function() {
     const flags = "g";
 
     function replacement(_wholeMatch, match, left, right) {
+        let lang = _wholeMatch.match(/language-(\w+)/);
+        lang = lang ? lang[0] : "js";
+
         match = htmlunencode(match);
-        return `<Code src="${match}" codeType="js" />`;
+        return `<Code src="${match}" codeType="${lang}" />`;
     }
 
     const screenshot = {
