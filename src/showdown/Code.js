@@ -26,7 +26,11 @@ export const extension = function() {
 
     function replacement(_wholeMatch, match, left, right) {
         let lang = _wholeMatch.match(/language-(\w+)/);
-        lang = lang ? lang[0] : "js";
+        lang = lang ? lang[1] : "javascript";
+
+        if (!match || !left || !right) {
+            return _wholeMatch;
+        }
 
         match = htmlunencode(match);
         return `<Code src="${match}" codeType="${lang}" />`;
@@ -35,7 +39,6 @@ export const extension = function() {
     const screenshot = {
         type: "output",
         filter: function(text, _converter, _options) {
-            console.log("code filter");
             return showdown.helper.replaceRecursiveRegExp(
                 text,
                 replacement,
@@ -77,7 +80,7 @@ export class Component extends React.Component {
 
         return (
             <a href={src} target="_blank" rel="noopener noreferrer">
-                <img src={image} style={{ maxWidth: 480 }} alt={caption} />
+                <img src={image} alt={caption} />
             </a>
         );
     }

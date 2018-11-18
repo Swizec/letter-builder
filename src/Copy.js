@@ -1,5 +1,15 @@
 import React from "react";
-import { Hero, Container, Title, SubTitle, Content, Section } from "reactbulma";
+import {
+    Hero,
+    Container,
+    Title,
+    SubTitle,
+    Content,
+    Section,
+    Button
+} from "reactbulma";
+
+import { Consumer } from "./Context";
 
 export const MyHero = () => (
     <Hero>
@@ -16,6 +26,13 @@ export const MyHero = () => (
                     ⌨ live render as you type <br />
                     🏚 [urls] change to embeds
                 </Content>
+                <Consumer>
+                    {({ tryExample }) => (
+                        <Button large primary onClick={tryExample}>
+                            Try example ✍
+                        </Button>
+                    )}
+                </Consumer>
             </Container>
         </Hero.Body>
     </Hero>
