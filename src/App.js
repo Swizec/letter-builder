@@ -16,9 +16,15 @@ Write markdown and a newsletter comes out. 🧙
 
 ![Woman holding glasses](https://images.unsplash.com/photo-1471017851983-fc49d89c57c2?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=95bed2df50656fd7e4aa5924b250ff88&auto=format&fit=crop&w=2550&q=80)
 
+All images are resized to 480px width and link to source. This ensures email clients display the full image and saves your readers' bandwidth.
+
+Everything hosted on S3 for forever. Never lose an image again.
+
 ## Tweets turn into screenshots
 
 [https://twitter.com/Swizec/status/1063847466196328448]
+
+Thumbnails link to original tweets, but your readers can read them right in their email client. No more losing context.
 
 ## YouTube links become screenshots too
 
@@ -124,7 +130,10 @@ class App extends Component {
                                             success
                                             onClick={exportLetter}
                                         >
-                                            Export <span role="img" aria-label='face'>📬</span>
+                                            Export{" "}
+                                            <span role="img" aria-label="face">
+                                                📬
+                                            </span>
                                         </Button>
                                     </Section>
                                 )}
