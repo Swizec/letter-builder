@@ -22,16 +22,26 @@ export class Component extends React.Component {
 
     async componentDidMount() {
         const { src } = this.props;
+        const tmp = new URL(src);
 
-        try {
-            const res = await fetch(
-                    `https://84wz7ux5rc.execute-api.us-east-1.amazonaws.com/default/screenshot-as-a-service-dev-screenshot-function?type=image&url=${src}`
-                ),
-                url = await res.text();
+        if (
+            tmp.pathname
+                .split(".")
+                .pop()
+                .toLowerCase() === "gif"
+        ) {
+            this.setState({ image: src });
+        } else {
+            try {
+                const res = await fetch(
+                        `https://84wz7ux5rc.execute-api.us-east-1.amazonaws.com/default/screenshot-as-a-service-dev-screenshot-function?type=image&url=${src}`
+                    ),
+                    url = await res.text();
 
-            this.setState({ image: url });
-        } catch (e) {
-            this.setState({ image: "/undraw_warning_cyit.png" });
+                this.setState({ image: url });
+            } catch (e) {
+                this.setState({ image: "/undraw_warning_cyit.png" });
+            }
         }
     }
 

@@ -21,10 +21,10 @@ class App extends Component {
                 <Copy.Hero />
                 <Provider value={this.state}>
                     <Section style={{ display: "flex", paddingTop: 0 }}>
-                        <Section style={{ flexGrow: 1 }}>
+                        <Section style={{ flexGrow: 1, width: "50%" }}>
                             <MarkdownInput />
                         </Section>
-                        <Section style={{ flexGrow: 1 }}>
+                        <Section style={{ flexGrow: 1, width: "50%" }}>
                             <LetterRender />
                         </Section>
                     </Section>
