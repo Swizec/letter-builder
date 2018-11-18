@@ -4,7 +4,7 @@ import { Section, Button } from "reactbulma";
 import Copy from "./Copy";
 import MarkdownInput from "./MarkdownInput";
 import LetterRender from "./LetterRender";
-import { Provider } from "./Context";
+import { Provider, Consumer } from "./Context";
 
 import "./App.css";
 
@@ -29,18 +29,68 @@ That way you can embed them in an email.
 ## Even code blocks!
 
 \`\`\`javascript
-const a = 'Hello';
-console.log(a, "World");
+const screenshot = {
+    type: "output",
+    filter: function(text, _converter, _options) {
+        return showdown.helper.replaceRecursiveRegExp(
+            text,
+            replacement,
+            left,
+            right,
+            flags
+        );
+    }
+};
 \`\`\`
 
+Screenshots are hard to copy pasta, so of course you get a copyable version when you click the image.
 `;
 
+// Borrowed from https://hackernoon.com/copying-text-to-clipboard-with-javascript-df4d4988697f
+const copyToClipboard = str => {
+    const el = document.createElement("textarea"); // Create a <textarea> element
+    el.value = str; // Set its value to the string that you want copied
+    el.setAttribute("readonly", ""); // Make it readonly to be tamper-proof
+    el.style.position = "absolute";
+    el.style.left = "-9999px"; // Move outside the screen to make it invisible
+    document.body.appendChild(el); // Append the <textarea> element to the HTML document
+    const selected =
+        document.getSelection().rangeCount > 0 // Check if there is any content selected previously
+            ? document.getSelection().getRangeAt(0) // Store selection if found
+            : false; // Mark as false to know no selection existed before
+    el.select(); // Select the <textarea> content
+    document.execCommand("copy"); // Copy - only works as a result of a user action (e.g. click events)
+    document.body.removeChild(el); // Remove the <textarea> element
+    if (selected) {
+        // If a selection existed before copying
+        document.getSelection().removeAllRanges(); // Unselect everything on the HTML document
+        document.getSelection().addRange(selected); // Restore the original selection
+    }
+};
+
 class App extends Component {
+    letterRef = React.createRef();
+
     state = {
         markdown: "",
         onChangeMarkdown: event =>
             this.setState({ markdown: event.target.value }),
-        tryExample: event => this.setState({ markdown: exampleMarkdown })
+        tryExample: event => this.setState({ markdown: exampleMarkdown }),
+        exportLetter: event => {
+            const { markdown } = this.state;
+
+            if (markdown.length === 0) {
+                alert("Nothing to export. Try writing a letter first");
+            }
+
+            const html = this.letterRef.current.querySelector(".content > div")
+                .innerHTML;
+
+            copyToClipboard(html);
+            alert(
+                "Letter copied to clipboard. Use Cmd+V in your favorite email sending app 💌"
+            );
+        }
     };
 
     render() {
@@ -62,7 +112,23 @@ class App extends Component {
                             <MarkdownInput />
                         </Section>
                         <Section style={{ flexGrow: 1, width: "50%" }}>
-                            <LetterRender />
+                            <LetterRender ref={this.letterRef} />
+                            <Consumer>
+                                {({ exportLetter }) => (
+                                    <Section
+                                        style={{ textAlign: "right" }}
+                                        medium
+                                    >
+                                        <Button
+                                            large
+                                            success
+                                            onClick={exportLetter}
+                                        >
+                                            Export 📬
+                                        </Button>
+                                    </Section>
+                                )}
+                            </Consumer>
                         </Section>
                     </Section>
                 </Provider>
