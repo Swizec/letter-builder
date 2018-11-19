@@ -105,6 +105,13 @@ export const MyHero = () => (
                             </Button>
                         )}
                     </Consumer>
+                    <br />
+                    <a
+                        href="https://www.youtube.com/watch?v=io-mQGGiICg"
+                        style={{ color: "blue", textDecoration: "underline" }}
+                    >
+                        or watch demo video
+                    </a>
                 </Container>
             </Hero.Body>
         </Wrapper>
