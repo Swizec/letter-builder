@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import HeroIMG from './Images/TechLetterHero.png'
 
 import {
     Hero,
@@ -14,32 +15,111 @@ import {
 import { Consumer } from "./Context";
 
 const Wrapper = styled.div`
-    background-color: #ffc600;
-    background-image: linear-gradient(45deg, #ffc600 17%, #faef5e 75%);
-    text-align: center;
+    background-color: #135cb9;
+    background-image: linear-gradient(45deg, #135cb9 23%, #0f3673 100%);
     height: 100%;
     margin: 0;
+    @keyframes HeroAnimation {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 3;
+    transform: translateY(0);
+  }
+}
 
     .title {
         font-size: 80px;
         font-weight: 900;
     }
     .subtitle {
-        font-weight: 700;
+        font-weight: 400;
+        color: #fff;
     }
     strong {
-        color: #fff;
-        background-color: red;
+        color: #000;
+        bbackground-color: #ffc600;
+        background-image: linear-gradient(45deg, #ffc600 17%, #faef5e 75%);
         padding: 0.2rem;
     }
+    strong:hover {
+        color: #fff;
+    }
+    img {
+        height: 500px;
+        animation: HeroAnimation;
+    animation-duration: 6s;
+    animation-fill-mode: forwards;
+    animation-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+    
     @media (max-width: 940px) {
         .title {
             font-size: 60px;
         }
     }
 `;
+
+const WrapperGrid = styled.div`
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-gap: 2rem 0;
+    align-items: center;
+    justify-items: center;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+    "Header Himger"
+    "Copy Himger";
+
+    .Head {
+        grid-area: Header;
+    }
+    .Himg {
+        grid-area: Himger;
+    }
+    .ContentCopy {
+        grid-area: Copy;
+    }
+    .HeartMail {
+        font-size: 70px;
+    }
+    h1 {
+        color: #ffc600;
+    }
+    p {
+        color: #fff;
+    }
+    Button {
+        border: none;
+        color: #fff;
+        font-size: 20px;
+        font-weight: 900;
+        transition: 1s cubic-bezier(0.2, 0.8, 0.2, 1);
+        background-color: #23c55b;
+    }
+    Button:hover {
+        background-color: #faef5e;
+        box-shadow: 0px 10px 20px rgba(0,0,0,0.5);
+    transform: translateY(-9px);
+    }
+    
+    @media (max-width: 940px) {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+    "Header"
+    "Himger"
+    "Copy"; 
+    img {
+        height: 200px;
+    }
+    }
+`;
 const WrapperFooter = styled.div`
-    background-color: #363636;
+    background-color: #135cb9;
+    background-image: linear-gradient(45deg, #135cb9 23%, #0f3673 100%);
     color: #fff;
     text-align: center;
     height: 100%;
@@ -51,12 +131,20 @@ export const MyHero = () => (
         <Wrapper>
             <Hero.Body>
                 <Container>
-                    <Title>
-                        Build Better Newsletters <br />
-                        <span role="img" aria-label="mailheart">
+                <WrapperGrid>
+                    <div className='Head'>
+                        <span className='HeartMail' role="img" aria-label="mailheart">
                             💌
                         </span>
-                    </Title>
+                        <Title >
+                            Build Better Newsletters <br />
+                        </Title>
+                    </div>
+
+                    <div className='Himg'>
+                        <img  src={HeroIMG} alt='Hero'/>
+                    </div>
+                    <div className='ContentCopy'>
                     <SubTitle>
                         A{" "}
                         <a
@@ -97,10 +185,10 @@ export const MyHero = () => (
                     </SubTitle>
                     <Consumer>
                         {({ tryExample }) => (
-                            <Button large primary onClick={tryExample}>
+                            <Button  onClick={tryExample}>
                                 Try example{" "}
-                                <span role="img" aria-label="face">
-                                    ✍
+                                 <span role="img" aria-label="face">
+                                     ✍
                                 </span>
                             </Button>
                         )}
@@ -108,10 +196,12 @@ export const MyHero = () => (
                     <br />
                     <a
                         href="https://www.youtube.com/watch?v=io-mQGGiICg"
-                        style={{ color: "blue", textDecoration: "underline" }}
+                        
                     >
                         or watch demo video
                     </a>
+                    </div>
+                    </WrapperGrid>
                 </Container>
             </Hero.Body>
         </Wrapper>
