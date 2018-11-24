@@ -1,6 +1,6 @@
 import React from "react";
 import ReactModal from "react-modal";
-import { Hero, Container, Title, SubTitle, Section, Button } from "reactbulma";
+import { Title, SubTitle, Section, Button } from "reactbulma";
 
 import { Consumer } from "./Context";
 
@@ -97,13 +97,14 @@ export default class ExportButton extends React.Component {
                         >
                             <Title>Letter copied to clipboard.</Title>
                             <SubTitle>
-                                Use Cmd+V in your favorite email sending app 💌
+                                Use Cmd+V in your favorite email sending app <span role="img" aria-label="face">💌</span>
                                 <br />
-                                <br />⏳ Saved some time? Consider supporting
-                                this free tool 👇
+                                <br /><span role="img" aria-label="face">⏳ </span> Saved some time? Consider supporting
+                                this free tool <span role="img" aria-label="face">👇</span>
                             </SubTitle>
                         </Section>
                         <iframe
+                        title="This is a unique title"
                             src="https://checkoutpage.co/checkout/5bf1f1de674864001494c292/techletter-app--build-better-newsletters--"
                             style={{ flexGrow: 1 }}
                         />
