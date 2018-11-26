@@ -33,11 +33,19 @@ const Wrapper = styled.div`
     .title {
         font-size: 45px;
         font-weight: 900;
+        animation: HeroAnimation;
+        animation-duration: 6s;
+        animation-fill-mode: forwards;
+        animation-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1);
     }
     .subtitle {
         font-size: 20px;
         font-weight: 400;
         color: #fff;
+        animation: HeroAnimation;
+        animation-duration: 6s;
+        animation-fill-mode: forwards;
+        animation-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1);
     }
     strong {
         color: #000;
@@ -69,8 +77,6 @@ const WrapperGrid = styled.div`
     margin: 0 auto;
     display: grid;
     grid-gap: 1rem 0;
-    align-items: center;
-    justify-items: center;
     grid-template-columns: 1fr 1fr;
     grid-template-areas:
     "Header Himger"
@@ -81,6 +87,7 @@ const WrapperGrid = styled.div`
     }
     .Himg {
         grid-area: Himger;
+        justify-self: end;
     }
     .ContentCopy {
         grid-area: Copy;
@@ -105,7 +112,7 @@ const WrapperGrid = styled.div`
     Button:hover {
         background-color: #ffc600;
         box-shadow: 0px 10px 20px rgba(0,0,0,0.5);
-    transform: translateY(-9px);
+        transform: translateY(-9px);
     }
     
     @media (max-width: 940px) {
@@ -117,7 +124,12 @@ const WrapperGrid = styled.div`
     img {
         height: 200px;
     }
+    .Himg {
+        grid-area: Himger;
+        justify-self: center;
     }
+}
+
 `;
 const WrapperFooter = styled.div`
     background-color: #135cb9;
