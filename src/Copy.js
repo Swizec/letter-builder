@@ -87,7 +87,7 @@ const WrapperGrid = styled.div`
     }
     .Himg {
         grid-area: Himger;
-        justify-self: end;
+        justify-self: center;
     }
     .ContentCopy {
         grid-area: Copy;
@@ -123,10 +123,6 @@ const WrapperGrid = styled.div`
     "Copy"; 
     img {
         height: 200px;
-    }
-    .Himg {
-        grid-area: Himger;
-        justify-self: center;
     }
 }
 
