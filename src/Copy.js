@@ -31,10 +31,11 @@ const Wrapper = styled.div`
 }
 
     .title {
-        font-size: 80px;
+        font-size: 45px;
         font-weight: 900;
     }
     .subtitle {
+        font-size: 20px;
         font-weight: 400;
         color: #fff;
     }
@@ -48,8 +49,9 @@ const Wrapper = styled.div`
         color: #fff;
     }
     img {
-        height: 500px;
-        animation: HeroAnimation;
+    
+    height: 400px;
+    animation: HeroAnimation;
     animation-duration: 6s;
     animation-fill-mode: forwards;
     animation-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1);
@@ -66,7 +68,7 @@ const WrapperGrid = styled.div`
     max-width: 1200px;
     margin: 0 auto;
     display: grid;
-    grid-gap: 2rem 0;
+    grid-gap: 1rem 0;
     align-items: center;
     justify-items: center;
     grid-template-columns: 1fr 1fr;
@@ -101,7 +103,7 @@ const WrapperGrid = styled.div`
         background-color: #23c55b;
     }
     Button:hover {
-        background-color: #faef5e;
+        background-color: #ffc600;
         box-shadow: 0px 10px 20px rgba(0,0,0,0.5);
     transform: translateY(-9px);
     }
@@ -186,8 +188,8 @@ export const MyHero = () => (
                     <Consumer>
                         {({ tryExample }) => (
                             <Button  onClick={tryExample}>
-                                Try example{" "}
-                                 <span role="img" aria-label="face">
+                                Try Example{" "} 
+                                  <span role="img" aria-label="face"> 
                                      ✍
                                 </span>
                             </Button>
