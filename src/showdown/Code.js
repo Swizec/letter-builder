@@ -1,5 +1,6 @@
 import React from "react";
 import showdown from "showdown";
+import { Base64 } from "js-base64";
 
 // https://twitter.com/thepatwalls/status/1064024065961119745
 // https://www.youtube.com/watch?v=pwkYP4iFt5Y
@@ -33,7 +34,7 @@ export const extension = function() {
         }
 
         match = htmlunencode(match);
-        return `<Code src="${btoa(match)}" codeType="${lang}" />`;
+        return `<Code src="${Base64.encodeURI(match)}" codeType="${lang}" />`;
     }
 
     const screenshot = {
@@ -76,7 +77,7 @@ export class Component extends React.Component {
         const { src, codeType } = this.props;
 
         return `https://carbon.now.sh/?bg=rgba(255,255,255,1)&t=seti&l=${codeType}&ds=true&wc=true&wa=true&pv=48px&ph=32px&ln=false&code=${encodeURIComponent(
-            atob(src)
+            Base64.decode(src)
         )}`;
     }
 

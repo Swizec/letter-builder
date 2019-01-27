@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "js-base64": "^2.5.1",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
     "react-modal": "^3.6.1",

@@ -1,6 +1,6 @@
 import React from "react";
 import ReactModal from "react-modal";
-import { Hero, Container, Title, SubTitle, Section, Button } from "reactbulma";
+import { Title, SubTitle, Section, Button } from "reactbulma";
 
 import { Consumer } from "./Context";
 
@@ -106,6 +106,7 @@ export default class ExportButton extends React.Component {
                         <iframe
                             src="https://checkoutpage.co/checkout/5bf1f1de674864001494c292/techletter-app--build-better-newsletters--"
                             style={{ flexGrow: 1 }}
+                            title="Checkout page"
                         />
                     </Section>
                 </ReactModal>
