@@ -1,14 +1,35 @@
 import { useState, useEffect } from "react";
 import remark from "remark";
-import html from "remark-html";
-// import utf8 from "remark-utf8";
-import codeScreenshot from "remark-code-screenshot";
+// import codeScreenshot from "remark-code-screenshot";
+import remark2react from "remark-react";
+import codeScreenshot from "./remarkCodeScreenshot";
+import Screenshot from "../Screenshot";
+
+// Why are screenshots not linked?
+// How can we show loading for screenshots?
+// Add back support for youtube, twitter, etc.
+
+const screenshotHandler = (h, node) => {
+    const props = { node };
+
+    return h(node, "screenshot", props);
+};
 
 export const remarkCompile = input =>
     new Promise((resolve, reject) => {
         remark()
             .use(codeScreenshot)
-            .use(html)
+            .use(remark2react, {
+                sanitize: false,
+                remarkReactComponents: {
+                    screenshot: Screenshot
+                },
+                toHast: {
+                    handlers: {
+                        screenshot: screenshotHandler
+                    }
+                }
+            })
             .process(input, (err, output) => {
                 if (err) {
                     reject(err);
