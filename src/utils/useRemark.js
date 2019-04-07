@@ -3,6 +3,7 @@ import remark from "remark";
 // import codeScreenshot from "remark-code-screenshot";
 import remark2react from "remark-react";
 import codeScreenshot from "./remarkCodeScreenshot";
+import urlThumbnail from "./remarkUrlThumbnail";
 import Screenshot from "../Screenshot";
 
 // Why are screenshots not linked?
@@ -18,6 +19,14 @@ const screenshotHandler = (h, node) => {
 export const remarkCompile = input =>
     new Promise((resolve, reject) => {
         remark()
+            .use(urlThumbnail, {
+                domains: [
+                    "m.twitter.com",
+                    "twitter.com",
+                    "youtube.com",
+                    "youtu.be"
+                ]
+            })
             .use(codeScreenshot)
             .use(remark2react, {
                 sanitize: false,
