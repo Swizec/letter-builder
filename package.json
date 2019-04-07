@@ -1,35 +1,37 @@
 {
-  "name": "letter-builder",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "js-base64": "^2.5.1",
-    "react": "^16.6.3",
-    "react-dom": "^16.6.3",
-    "react-modal": "^3.6.1",
-    "react-showdown": "^1.6.0",
-    "react-spinkit": "^3.0.0",
-    "reactbulma": "^3.0.4",
-    "showdown": "^1.9.0",
-    "showdown-twitter": "^1.1.0",
-    "styled-components": "^4.1.1"
-  },
-  "devDependencies": {
-    "react-scripts": "2.1.1"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
-  "browserslist": [
-    ">0.2%",
-    "not dead",
-    "not ie <= 11",
-    "not op_mini all"
-  ]
+    "name": "letter-builder",
+    "version": "0.1.0",
+    "private": true,
+    "dependencies": {
+        "js-base64": "^2.5.1",
+        "react": "^16.8.6",
+        "react-dom": "^16.8.6",
+        "react-modal": "^3.6.1",
+        "react-showdown": "^1.6.0",
+        "react-spinkit": "^3.0.0",
+        "reactbulma": "^3.0.4",
+        "remark": "^10.0.1",
+        "remark-html": "^9.0.0",
+        "showdown": "^1.9.0",
+        "showdown-twitter": "^1.1.0",
+        "styled-components": "^4.1.1"
+    },
+    "devDependencies": {
+        "react-scripts": "2.1.1"
+    },
+    "scripts": {
+        "start": "react-scripts start",
+        "build": "react-scripts build",
+        "test": "react-scripts test",
+        "eject": "react-scripts eject"
+    },
+    "eslintConfig": {
+        "extends": "react-app"
+    },
+    "browserslist": [
+        ">0.2%",
+        "not dead",
+        "not ie <= 11",
+        "not op_mini all"
+    ]
 }
