@@ -11,6 +11,7 @@
         "react-spinkit": "^3.0.0",
         "reactbulma": "^3.0.4",
         "remark": "^10.0.1",
+        "remark-code-screenshot": "^1.0.0",
         "remark-html": "^9.0.0",
         "showdown": "^1.9.0",
         "showdown-twitter": "^1.1.0",
