@@ -20,7 +20,7 @@ function Screenshot({ node }) {
     }, [node]);
 
     return (
-        <a href={image} target="_blank" rel="noopener noreferrer">
+        <a href={node.link} target="_blank" rel="noopener noreferrer">
             <img src={image} style={{ maxWidth: 480 }} alt={node.value} />
         </a>
     );

@@ -2,22 +2,16 @@ import visit from "unist-util-visit";
 
 // copied from https://github.com/Swizec/remark-code-screenshot/blob/master/src/index.js
 
-async function getCodeScreenshot(src) {
-    const codeType = "javascript",
-        srcArg = btoa(src);
-
-    const res = await fetch(
-        `https://84wz7ux5rc.execute-api.us-east-1.amazonaws.com/default/screenshot-as-a-service-dev-screenshot-function?type=code&code=${srcArg}&codeType=${codeType}`
-    );
-
-    return res.text();
-}
-
-function getScreenshotUrl(src) {
-    const codeType = "javascript",
-        srcArg = btoa(src);
+function getScreenshotUrl(src, codeType = "javascript") {
+    const srcArg = btoa(src);
 
     return `https://84wz7ux5rc.execute-api.us-east-1.amazonaws.com/default/screenshot-as-a-service-dev-screenshot-function?type=code&code=${srcArg}&codeType=${codeType}`;
+}
+
+function getSourceLink(src, codeType = "javascript") {
+    return `https://carbon.now.sh/?bg=rgba(255,255,255,1)&t=seti&l=${codeType}&ds=true&wc=true&wa=true&pv=48px&ph=32px&ln=false&code=${encodeURIComponent(
+        src
+    )}`;
 }
 
 function codeScreenshot() {
@@ -31,7 +25,8 @@ function codeScreenshot() {
             });
             for (const { node } of nodesToChange) {
                 node.type = "screenshot";
-                node.url = getScreenshotUrl(node.value);
+                node.url = getScreenshotUrl(node.value, node.lang);
+                node.link = getSourceLink(node.value, node.lang);
             }
 
             resolve();
