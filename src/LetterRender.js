@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import { Content, Heading } from "reactbulma";
-import "showdown-twitter";
 
 import MarkdownContext from "./Context";
 import useRemark from "./utils/useRemark";
