@@ -1,9 +1,10 @@
 import visit from "unist-util-visit";
+import { Base64 } from "js-base64";
 
 // copied from https://github.com/Swizec/remark-code-screenshot/blob/master/src/index.js
 
 function getScreenshotUrl(src, codeType = "javascript") {
-    const srcArg = btoa(src);
+    const srcArg = Base64.encode(src);
 
     return `https://84wz7ux5rc.execute-api.us-east-1.amazonaws.com/default/screenshot-as-a-service-dev-screenshot-function?type=code&code=${srcArg}&codeType=${codeType}`;
 }
