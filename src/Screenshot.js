@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Base64 } from "js-base64";
 
 // https://twitter.com/thepatwalls/status/1064024065961119745
 // https://www.youtube.com/watch?v=pwkYP4iFt5Y
@@ -21,7 +22,11 @@ function Screenshot({ node }) {
 
     return (
         <a href={node.link} target="_blank" rel="noopener noreferrer">
-            <img src={image} style={{ maxWidth: 480 }} alt={node.value} />
+            <img
+                src={image}
+                style={{ maxWidth: 480 }}
+                alt="Click through for source"
+            />
         </a>
     );
 }
