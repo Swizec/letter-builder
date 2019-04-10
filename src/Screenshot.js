@@ -1,8 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { Base64 } from "js-base64";
-
-// https://twitter.com/thepatwalls/status/1064024065961119745
-// https://www.youtube.com/watch?v=pwkYP4iFt5Y
 
 function Screenshot({ node }) {
     const [image, setImage] = useState("/lg.pink-pig-ajax-loader.gif");
