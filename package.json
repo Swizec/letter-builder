@@ -3,6 +3,7 @@
     "version": "0.1.0",
     "private": true,
     "dependencies": {
+        "github-api": "^3.0.0",
         "js-base64": "^2.5.1",
         "react": "^16.8.6",
         "react-dom": "^16.8.6",

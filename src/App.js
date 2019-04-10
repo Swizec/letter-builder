@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Section } from "reactbulma";
+import GitHub from "github-api";
 
 import Copy from "./Copy";
 import MarkdownInput from "./MarkdownInput";
@@ -51,6 +52,14 @@ const screenshot = {
 \`\`\`
 
 Screenshots are hard to copy pasta, so of course you get a copyable version when you click the image.
+
+## You also get Instagram support
+
+https://www.instagram.com/p/BvprE_AluFE/
+
+## And of course CodeSandbox
+
+https://codesandbox.io/s/llpk084r69
 `;
 
 class App extends Component {
@@ -61,6 +70,19 @@ class App extends Component {
         tryExample: event => this.setState({ markdown: exampleMarkdown }),
         letterRef: React.createRef()
     };
+
+    // Find way to sort returned repositories
+    // Take the likeliest match, return link
+    // Markdown syntax: gh:remarkjs
+    // async componentDidMount() {
+    //     const gh = new GitHub();
+    //     const result = await gh
+    //         .search({
+    //             q: "remarkjs"
+    //         })
+    //         .forRepositories();
+    //     console.log(result);
+    // }
 
     render() {
         return (

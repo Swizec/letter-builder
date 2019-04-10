@@ -1,14 +1,9 @@
 import { useState, useEffect } from "react";
 import remark from "remark";
-// import codeScreenshot from "remark-code-screenshot";
 import remark2react from "remark-react";
 import codeScreenshot from "./remarkCodeScreenshot";
 import urlThumbnail from "./remarkUrlThumbnail";
 import Screenshot from "../Screenshot";
-
-// Why are screenshots not linked?
-// How can we show loading for screenshots?
-// Add back support for youtube, twitter, etc.
 
 const screenshotHandler = (h, node) => {
     const props = { node };
@@ -26,7 +21,7 @@ export const remarkCompile = input =>
                     "youtube.com",
                     "youtu.be",
                     "instagram.com",
-                    "codesandbox.com"
+                    "codesandbox.io"
                 ]
             })
             .use(codeScreenshot)
