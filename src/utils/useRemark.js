@@ -24,7 +24,9 @@ export const remarkCompile = input =>
                     "m.twitter.com",
                     "twitter.com",
                     "youtube.com",
-                    "youtu.be"
+                    "youtu.be",
+                    "instagram.com",
+                    "codesandbox.com"
                 ]
             })
             .use(codeScreenshot)

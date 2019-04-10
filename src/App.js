@@ -23,7 +23,7 @@ Everything hosted on S3 for forever. Never lose an image again.
 
 ## Tweets turn into screenshots
 
-[https://twitter.com/Swizec/status/1063847466196328448]
+https://twitter.com/Swizec/status/1063847466196328448
 
 Thumbnails link to original tweets, but your readers can read them right in their email client. No more losing context.
 
@@ -31,7 +31,7 @@ Thumbnails link to original tweets, but your readers can read them right in thei
 
 That way you can embed them in an email.
 
-[https://www.youtube.com/watch?v=I_aTT6xxVL4]
+https://www.youtube.com/watch?v=I_aTT6xxVL4
 
 ## Even code blocks!
 
