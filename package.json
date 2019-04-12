@@ -3,7 +3,7 @@
     "version": "0.1.0",
     "private": true,
     "dependencies": {
-        "github-api": "^3.0.0",
+        "@octokit/rest": "^16.23.4",
         "js-base64": "^2.5.1",
         "lodash.debounce": "^4.0.8",
         "react": "^16.8.6",
