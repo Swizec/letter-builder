@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Section } from "reactbulma";
-import GitHub from "github-api";
 
 import Copy from "./Copy";
 import MarkdownInput from "./MarkdownInput";
@@ -70,19 +69,6 @@ class App extends Component {
         tryExample: event => this.setState({ markdown: exampleMarkdown }),
         letterRef: React.createRef()
     };
-
-    // Find way to sort returned repositories
-    // Take the likeliest match, return link
-    // Markdown syntax: gh:remarkjs
-    // async componentDidMount() {
-    //     const gh = new GitHub();
-    //     const result = await gh
-    //         .search({
-    //             q: "remarkjs"
-    //         })
-    //         .forRepositories();
-    //     console.log(result);
-    // }
 
     render() {
         return (

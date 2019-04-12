@@ -5,6 +5,7 @@
     "dependencies": {
         "github-api": "^3.0.0",
         "js-base64": "^2.5.1",
+        "lodash.debounce": "^4.0.8",
         "react": "^16.8.6",
         "react-dom": "^16.8.6",
         "react-modal": "^3.6.1",

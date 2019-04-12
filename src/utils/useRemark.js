@@ -1,14 +1,17 @@
 import { useState, useEffect } from "react";
 import remark from "remark";
 import remark2react from "remark-react";
+
 import codeScreenshot from "./remarkCodeScreenshot";
 import urlThumbnail from "./remarkUrlThumbnail";
 import Screenshot from "../Screenshot";
 
-const screenshotHandler = (h, node) => {
+import { githubLinks, GithubLink } from "./remarkGithubLinks";
+
+const customHandler = type => (h, node) => {
     const props = { node };
 
-    return h(node, "screenshot", props);
+    return h(node, type, props);
 };
 
 export const remarkCompile = input =>
@@ -25,14 +28,17 @@ export const remarkCompile = input =>
                 ]
             })
             .use(codeScreenshot)
+            .use(githubLinks)
             .use(remark2react, {
                 sanitize: false,
                 remarkReactComponents: {
-                    screenshot: Screenshot
+                    screenshot: Screenshot,
+                    githubLink: GithubLink
                 },
                 toHast: {
                     handlers: {
-                        screenshot: screenshotHandler
+                        screenshot: customHandler("screenshot"),
+                        githubLink: customHandler("githubLink")
                     }
                 }
             })
