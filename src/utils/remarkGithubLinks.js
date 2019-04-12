@@ -4,6 +4,8 @@ import Octokit from "@octokit/rest";
 
 const octokit = new Octokit({});
 
+let GithubCache = {};
+
 //[remark](gh:remarkjs/remark)
 
 //[gatsby repo](gh:gatsby)
@@ -33,24 +35,38 @@ const GithubLink = React.memo(
     ({ node }) => {
         const [url, setUrl] = useState(null);
 
-        console.log("Rendering", node.url);
-
         useEffect(
             function() {
-                (async function() {
-                    const query = node.url.replace(/^gh:/, "");
+                const query = node.url.replace(/^gh:/, "");
 
-                    const result = await octokit.search.repos({
-                        q: query,
-                        page: 1
-                    });
+                if (GithubCache[query]) {
+                    // Avoid making the same search multiple times
+                    setUrl(GithubCache[query]);
+                } else {
+                    let retries = 0;
+                    async function getUrl() {
+                        try {
+                            const result = await octokit.search.repos({
+                                q: query,
+                                page: 1
+                            });
 
-                    const url = result.data.items.sort(
-                        (a, b) => b.score - a.score
-                    )[0].html_url;
+                            const url = result.data.items.sort(
+                                (a, b) => b.score - a.score
+                            )[0].html_url;
 
-                    setUrl(url);
-                })();
+                            GithubCache[query] = url;
+
+                            setUrl(url);
+                        } catch (e) {
+                            if (retries < 5) {
+                                retries += 1;
+                                setTimeout(getUrl, 5000);
+                            }
+                        }
+                    }
+                    getUrl();
+                }
             },
             [node]
         );
