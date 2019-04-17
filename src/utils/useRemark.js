@@ -4,6 +4,7 @@ import remark2react from "remark-react";
 
 import codeScreenshot from "./remarkCodeScreenshot";
 import urlThumbnail from "./remarkUrlThumbnail";
+import twitterUserLinks from "./remarkTwitterUserLinks";
 import Screenshot from "../Screenshot";
 
 import { githubLinks, GithubLink } from "./remarkGithubLinks";
@@ -27,6 +28,7 @@ export const remarkCompile = input =>
                     "codesandbox.io"
                 ]
             })
+            .use(twitterUserLinks)
             .use(codeScreenshot)
             .use(githubLinks)
             .use(remark2react, {
