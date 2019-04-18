@@ -14,8 +14,9 @@ function remarkUrlThumbnail({ domains = [] }) {
                 const thumbnailable = domains.some(
                     d => url.hostname.replace("www.", "") === d
                 );
+                const rawLink = node.children[0].value === node.url;
 
-                if (thumbnailable) {
+                if (thumbnailable && rawLink) {
                     nodesToChange.push({
                         node
                     });
