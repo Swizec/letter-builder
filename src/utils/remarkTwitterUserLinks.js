@@ -1,4 +1,5 @@
 import visit from "unist-util-visit-parents";
+import u from "unist-builder";
 
 const UserRegex = new RegExp(/@(\w+)/, "g");
 
@@ -7,8 +8,27 @@ function* getUsernames(string) {
 
     do {
         match = UserRegex.exec(string);
-        yield match;
+        if (match) {
+            yield match;
+        }
     } while (match);
+}
+
+function linkUsername({ username, node, parent }) {
+    const [raw, clean] = username;
+    const [before, after] = node.value.split(raw);
+
+    const children = [
+        u("text", { value: before }),
+        u("link", { url: `https://twitter.com/${clean}` }, [
+            u("text", { value: raw })
+        ]),
+        u("text", { value: after })
+    ];
+
+    parent.children = children;
+
+    return [node, parent];
 }
 
 function twitterUserLinks() {
@@ -19,44 +39,21 @@ function twitterUserLinks() {
             // locate @username
             // split it into a link node
 
-            /// Note for tomorrow:
-            // Figure out how to split paragraph into multiple children
-            // change needle string into link node
-
             visit(tree, "text", (node, parents) => {
-                const [parent] = parents.slice(-1);
-                console.log("candidate?", { node, parent });
+                let [parent] = parents.slice(-1);
 
                 if (
                     node.value.indexOf("@") >= 0 &&
                     parent.type === "paragraph"
                 ) {
-                    console.log("changing stuff!");
-
                     const oldValue = node.value;
 
                     for (const username of getUsernames(oldValue)) {
-                        if (username) {
-                            console.log(username);
-
-                            const [raw, clean] = username;
-                            node.value = node.value.replace(
-                                raw,
-                                `https://twitter.com/${clean}`
-                            );
-
-                            parent.children.push({
-                                type: "link",
-                                url: `https://twitter.com/${clean}`,
-                                children: [
-                                    {
-                                        text: raw
-                                    }
-                                ]
-                            });
-
-                            console.log(node.children);
-                        }
+                        [node, parent] = linkUsername({
+                            username,
+                            node,
+                            parent
+                        });
                     }
                 }
             });
