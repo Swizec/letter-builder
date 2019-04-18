@@ -14,9 +14,12 @@ function* getUsernames(string) {
     } while (match);
 }
 
-function linkUsername({ username, node, parent }) {
+// replace last child of parent with subtree including a link
+function linkUsername({ username, parent }) {
     const [raw, clean] = username;
-    const [before, after] = node.value.split(raw);
+    const [before, after] = parent.children[
+        parent.children.length - 1
+    ].value.split(raw);
 
     const children = [
         u("text", { value: before }),
@@ -26,9 +29,10 @@ function linkUsername({ username, node, parent }) {
         u("text", { value: after })
     ];
 
-    parent.children = children;
+    parent.children.splice(-1, 1, children);
+    parent.children = parent.children.flat();
 
-    return [node, parent];
+    return parent;
 }
 
 function twitterUserLinks() {
@@ -49,16 +53,13 @@ function twitterUserLinks() {
                     const oldValue = node.value;
 
                     for (const username of getUsernames(oldValue)) {
-                        [node, parent] = linkUsername({
+                        parent = linkUsername({
                             username,
-                            node,
                             parent
                         });
                     }
                 }
             });
-
-            console.log(tree);
 
             resolve();
         });
