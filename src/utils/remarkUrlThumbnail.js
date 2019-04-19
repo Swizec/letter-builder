@@ -24,8 +24,8 @@ function remarkUrlThumbnail({ domains = [] }) {
             });
             for (const { node } of nodesToChange) {
                 node.type = "screenshot";
-                node.url = getScreenshotUrl(node.url);
                 node.link = node.url;
+                node.url = getScreenshotUrl(node.url);
             }
 
             resolve();
