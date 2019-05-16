@@ -6,7 +6,7 @@ import { giphyAPIKey } from "../secrets.json";
 
 // ![](giphy:hello)
 
-// ![](giphy:"rick and morty")
+// ![](giphy:rick_and_morty)
 
 function remarkGiphySearch() {
     return tree =>
