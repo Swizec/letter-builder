@@ -1,8 +1,12 @@
-import React, { useState, useEffect, useReducer } from "react";
+import React, { useEffect, useReducer } from "react";
 import visit from "unist-util-visit";
 import giphy from "giphy-api";
 
+import { giphyAPIKey } from "../secrets.json";
+
 // ![](giphy:hello)
+
+// ![](giphy:"rick and morty")
 
 function remarkGiphySearch() {
     return tree =>
@@ -26,41 +30,39 @@ function remarkGiphySearch() {
         });
 }
 
+function giphyReducer(state, action) {
+    switch (action.type) {
+        case "foundGiphys":
+            return {
+                giphys: action.giphys,
+                index: 0,
+                image: action.giphys[0].images.downsized_medium.url
+            };
+        case "nextGiphy":
+            let index = (state.index + 1) % state.giphys.length;
+            return {
+                ...state,
+                index,
+                image: state.giphys[index].images.downsized_medium.url
+            };
+        default:
+            throw new Error();
+    }
+}
+
+const initialState = {
+    results: [],
+    image: "/lg.pink-pig-ajax-loader.gif",
+    index: 0
+};
+
 const GiphySearch = React.memo(
     ({ node }) => {
-        const [{ image }, dispatch] = useReducer(
-            function(state, action) {
-                switch (action.type) {
-                    case "foundGiphys":
-                        return {
-                            giphys: action.giphys,
-                            index: 0,
-                            image: action.giphys[0].images.downsized_medium.url
-                        };
-                    case "nextGiphy":
-                        let index = (state.index + 1) % state.giphys.length;
-                        return {
-                            ...state,
-                            index,
-                            image:
-                                state.giphys[index].images.downsized_medium.url
-                        };
-                    default:
-                        throw new Error();
-                }
-            },
-            {
-                results: [],
-                image: "/lg.pink-pig-ajax-loader.gif",
-                index: 0
-            }
-        );
+        const [{ image }, dispatch] = useReducer(giphyReducer, initialState);
 
         useEffect(() => {
             (async () => {
-                const results = await giphy(
-                    "BbjXTpBIYN0GwoBCRpPLUCF08EPJ6PUp"
-                ).search(node.search);
+                const results = await giphy(giphyAPIKey).search(node.search);
 
                 dispatch({ type: "foundGiphys", giphys: results.data });
             })();
@@ -69,7 +71,7 @@ const GiphySearch = React.memo(
         return (
             <img
                 src={image}
-                style={{ maxWidth: 480 }}
+                style={{ maxWidth: 480, cursor: "pointer" }}
                 alt={`${node.search} giphy`}
                 onClick={() => dispatch({ type: "nextGiphy" })}
             />
