@@ -62,7 +62,10 @@ const GiphySearch = React.memo(
 
         useEffect(() => {
             (async () => {
-                const results = await giphy(giphyAPIKey).search(node.search);
+                const results = await giphy({
+                    apiKey: giphyAPIKey,
+                    https: true
+                }).search(node.search);
 
                 dispatch({ type: "foundGiphys", giphys: results.data });
             })();
