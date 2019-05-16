@@ -5,6 +5,7 @@ import remark2react from "remark-react";
 import codeScreenshot from "./remarkCodeScreenshot";
 import urlThumbnail from "./remarkUrlThumbnail";
 import twitterUserLinks from "./remarkTwitterUserLinks";
+import { remarkGiphySearch, GiphySearch } from "./remarkGiphySearch";
 import Screenshot from "../Screenshot";
 
 import { githubLinks, GithubLink } from "./remarkGithubLinks";
@@ -31,16 +32,19 @@ export const remarkCompile = input =>
             .use(twitterUserLinks)
             .use(codeScreenshot)
             .use(githubLinks)
+            .use(remarkGiphySearch)
             .use(remark2react, {
                 sanitize: false,
                 remarkReactComponents: {
                     screenshot: Screenshot,
-                    githubLink: GithubLink
+                    githubLink: GithubLink,
+                    giphySearch: GiphySearch
                 },
                 toHast: {
                     handlers: {
                         screenshot: customHandler("screenshot"),
-                        githubLink: customHandler("githubLink")
+                        githubLink: customHandler("githubLink"),
+                        giphySearch: customHandler("giphySearch")
                     }
                 }
             })
