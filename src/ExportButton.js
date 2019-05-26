@@ -26,6 +26,15 @@ const copyToClipboard = str => {
     }
 };
 
+function cleanupHTML(html) {
+    const el = document.createElement("body");
+    el.innerHTML = html;
+
+    el.querySelectorAll(".remove-me").forEach(el => el.remove());
+
+    return el.innerHTML;
+}
+
 export default class ExportButton extends React.Component {
     state = {
         showModal: false
@@ -36,7 +45,9 @@ export default class ExportButton extends React.Component {
             return alert("Nothing to export. Try writing a letter first");
         }
 
-        const html = letterRef.current.querySelector(".content").innerHTML;
+        const html = cleanupHTML(
+            letterRef.current.querySelector(".content").innerHTML
+        );
 
         copyToClipboard(html);
 
@@ -44,7 +55,6 @@ export default class ExportButton extends React.Component {
     };
 
     closeModal = () => {
-        console.log("HELLO");
         this.setState({ showModal: false });
     };
 
