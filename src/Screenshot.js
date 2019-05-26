@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
+import loaderImg from "./images/loader.gif";
+import errorImg from "./images/error.png";
 
 function Screenshot({ node }) {
-    const [image, setImage] = useState("/lg.pink-pig-ajax-loader.gif");
+    const [image, setImage] = useState(loaderImg);
 
     useEffect(() => {
         (async () => {
@@ -11,7 +13,7 @@ function Screenshot({ node }) {
 
                 setImage(url);
             } catch (e) {
-                setImage("/undraw_warning_cyit.png");
+                setImage(errorImg);
             }
         })();
     }, [node]);

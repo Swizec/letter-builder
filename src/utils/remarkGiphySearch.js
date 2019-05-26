@@ -2,6 +2,7 @@ import React, { useEffect, useReducer } from "react";
 import visit from "unist-util-visit";
 import giphy from "giphy-api";
 
+import loaderImg from "../images/loader.gif";
 import { giphyAPIKey } from "../secrets.json";
 
 // ![](giphy:hello)
@@ -52,7 +53,7 @@ function giphyReducer(state, action) {
 
 const initialState = {
     results: [],
-    image: "/lg.pink-pig-ajax-loader.gif",
+    image: loaderImg,
     index: 0
 };
 
