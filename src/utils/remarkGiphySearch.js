@@ -4,6 +4,7 @@ import giphy from "giphy-api";
 
 import loaderImg from "../images/loader.gif";
 import { giphyAPIKey } from "../secrets.json";
+import ReloadButton from "../ReloadButton";
 
 // ![](giphy:hello)
 
@@ -73,12 +74,14 @@ const GiphySearch = React.memo(
         }, [node.search]);
 
         return (
-            <img
-                src={image}
-                style={{ maxWidth: 480, cursor: "pointer" }}
-                alt={`${node.search} giphy`}
-                onClick={() => dispatch({ type: "nextGiphy" })}
-            />
+            <>
+                <img
+                    src={image}
+                    style={{ maxWidth: 480, cursor: "pointer" }}
+                    alt={`${node.search} giphy`}
+                />
+                <ReloadButton onClick={() => dispatch({ type: "nextGiphy" })} />
+            </>
         );
     },
     (prevProps, nextProps) => prevProps.node.search === nextProps.node.search
