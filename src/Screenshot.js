@@ -1,6 +1,25 @@
 import React, { useState, useEffect } from "react";
+import styled from "styled-components";
+
 import loaderImg from "./images/loader.gif";
 import errorImg from "./images/error.png";
+import reloadImg from "./images/reload.png";
+
+const Reload = styled.button`
+    float: right;
+    position: relative;
+    left: -39px;
+    background: url(${reloadImg});
+    background-size: 39px 39px;
+    width: 39px;
+    height: 39px;
+    border: 0px;
+    cursor: pointer;
+`;
+
+const Div = styled.div`
+    display: inline-block;
+`;
 
 function Screenshot({ node }) {
     const [image, setImage] = useState(loaderImg);
@@ -22,7 +41,10 @@ function Screenshot({ node }) {
     }, [node]);
 
     return (
-        <>
+        <Div>
+            <Reload className="remove-me" onClick={reloadImage}>
+                reload
+            </Reload>
             <a href={node.link} target="_blank" rel="noopener noreferrer">
                 <img
                     src={image}
@@ -30,10 +52,7 @@ function Screenshot({ node }) {
                     alt="Click through for source"
                 />
             </a>
-            <button className="remove-me" onClick={reloadImage}>
-                reload
-            </button>
-        </>
+        </Div>
     );
 }
 
