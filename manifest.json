@@ -1,0 +1,12 @@
+{
+    "manifest_version": 2,
+    "name": "Tech Letter App",
+    "version": "1",
+    "description": "Build better technical newsletters. Write markdown, get newsletter.🧙‍",
+    "content_scripts": [{
+        "matches": ["https://app.convertkit.com/*"],
+        "js": ["chrome_dist/convertkit.umd.js"],
+        "run_at": "document_end"
+    }],
+    "permissions": ["tabs", "https://app.convertkit.com/*"]
+}
