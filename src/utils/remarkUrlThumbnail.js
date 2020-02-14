@@ -2,7 +2,7 @@ import visit from "unist-util-visit";
 import Url from "url-parse";
 
 function getScreenshotUrl(url) {
-    return `https://84wz7ux5rc.execute-api.us-east-1.amazonaws.com/default/screenshot-as-a-service-dev-screenshot-function?url=${url}`;
+    return `https://pifc233qp6.execute-api.us-east-1.amazonaws.com/dev/screenshot?url=${url}`;
 }
 
 function remarkUrlThumbnail({ domains = [] }) {
