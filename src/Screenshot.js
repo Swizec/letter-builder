@@ -16,17 +16,24 @@ function Screenshot({ node }) {
         setImage(loaderImg);
         try {
             const res = await fetch(node.url),
-                url = await res.text();
+                response = await res.json();
 
-            setImage(url);
+            if (response.status === "success") {
+                setImage(response.url);
+            } else {
+                throw "Screenshot error";
+            }
         } catch (e) {
             setImage(errorImg);
         }
     };
 
-    useEffect(() => {
-        reloadImage();
-    }, [node]);
+    useEffect(
+        () => {
+            reloadImage();
+        },
+        [node]
+    );
 
     return (
         <Div>

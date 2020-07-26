@@ -2,23 +2,23 @@ import visit from "unist-util-visit";
 import Url from "url-parse";
 
 function getScreenshotUrl(url) {
-    return `https://pifc233qp6.execute-api.us-east-1.amazonaws.com/dev/screenshot?url=${url}`;
+    return `https://pifc233qp6.execute-api.us-east-1.amazonaws.com/dev/embed?url=${url}`;
 }
 
 function remarkUrlThumbnail({ domains = [] }) {
-    return tree =>
+    return (tree) =>
         new Promise(async (resolve, reject) => {
             const nodesToChange = [];
-            visit(tree, "link", node => {
+            visit(tree, "link", (node) => {
                 const url = new Url(node.url);
                 const thumbnailable = domains.some(
-                    d => url.hostname.replace("www.", "") === d
+                    (d) => url.hostname.replace("www.", "") === d
                 );
                 const rawLink = node.children[0].value === node.url;
 
                 if (thumbnailable && rawLink) {
                     nodesToChange.push({
-                        node
+                        node,
                     });
                 }
             });

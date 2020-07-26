@@ -3,7 +3,7 @@ import visit from "unist-util-visit";
 // copied from https://github.com/Swizec/remark-code-screenshot/blob/master/src/index.js
 
 function getScreenshotUrl(src, codeType = "javascript") {
-    return `https://pifc233qp6.execute-api.us-east-1.amazonaws.com/dev/screenshot?type=code&code=${encodeURIComponent(
+    return `https://pifc233qp6.execute-api.us-east-1.amazonaws.com/dev/code?type=code&code=${encodeURIComponent(
         src
     )}&codeType=${codeType}&urlencoded=true`;
 }
@@ -15,12 +15,12 @@ function getSourceLink(src, codeType = "javascript") {
 }
 
 function codeScreenshot() {
-    return tree =>
+    return (tree) =>
         new Promise(async (resolve, reject) => {
             const nodesToChange = [];
-            visit(tree, "code", node => {
+            visit(tree, "code", (node) => {
                 nodesToChange.push({
-                    node
+                    node,
                 });
             });
             for (const { node } of nodesToChange) {
