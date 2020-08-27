@@ -9,14 +9,15 @@ import { remarkGiphySearch, GiphySearch } from "./remarkGiphySearch";
 import Screenshot from "../Screenshot";
 
 import { githubLinks, GithubLink } from "./remarkGithubLinks";
+import { remarkNameOrFriend } from "./remarkNameOrFriend";
 
-const customHandler = type => (h, node) => {
+const customHandler = (type) => (h, node) => {
     const props = { node };
 
     return h(node, type, props);
 };
 
-export const remarkCompile = input =>
+export const remarkCompile = (input) =>
     new Promise((resolve, reject) => {
         remark()
             .use(urlThumbnail, {
@@ -26,27 +27,28 @@ export const remarkCompile = input =>
                     "youtube.com",
                     "youtu.be",
                     "instagram.com",
-                    "codesandbox.io"
-                ]
+                    "codesandbox.io",
+                ],
             })
             .use(twitterUserLinks)
             .use(codeScreenshot)
             .use(githubLinks)
             .use(remarkGiphySearch)
+            .use(remarkNameOrFriend)
             .use(remark2react, {
                 sanitize: false,
                 remarkReactComponents: {
                     screenshot: Screenshot,
                     githubLink: GithubLink,
-                    giphySearch: GiphySearch
+                    giphySearch: GiphySearch,
                 },
                 toHast: {
                     handlers: {
                         screenshot: customHandler("screenshot"),
                         githubLink: customHandler("githubLink"),
-                        giphySearch: customHandler("giphySearch")
-                    }
-                }
+                        giphySearch: customHandler("giphySearch"),
+                    },
+                },
             })
             .process(input, (err, output) => {
                 if (err) {
@@ -60,11 +62,14 @@ export const remarkCompile = input =>
 export default function useRemark(input) {
     const [rendered, setRendered] = useState("");
 
-    useEffect(() => {
-        remarkCompile(input)
-            .then(output => setRendered(output.contents))
-            .catch(err => console.error(err));
-    }, [input]);
+    useEffect(
+        () => {
+            remarkCompile(input)
+                .then((output) => setRendered(output.contents))
+                .catch((err) => console.error(err));
+        },
+        [input]
+    );
 
     return rendered;
 }
