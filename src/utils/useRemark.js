@@ -10,6 +10,7 @@ import Screenshot from "../Screenshot";
 
 import { githubLinks, GithubLink } from "./remarkGithubLinks";
 import { remarkNameOrFriend } from "./remarkNameOrFriend";
+import { remarkSparkJoy } from "./remarkSparkJoy";
 
 const customHandler = (type) => (h, node) => {
     const props = { node };
@@ -35,6 +36,7 @@ export const remarkCompile = (input) =>
             .use(githubLinks)
             .use(remarkGiphySearch)
             .use(remarkNameOrFriend)
+            .use(remarkSparkJoy)
             .use(remark2react, {
                 sanitize: false,
                 remarkReactComponents: {

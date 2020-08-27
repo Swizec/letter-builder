@@ -12,7 +12,7 @@ export function remarkNameOrFriend() {
                     nameOrFriend,
                     '{% if subscriber.first_name != blank %} {{ subscriber.first_name | truncatewords: 1, "" | capitalize }} {% else %} $1 {% endif %}'
                 );
-                node.chidlren = null;
+                node.children = null;
             }
         });
     };
