@@ -1,12 +1,9 @@
 import React, { useEffect, useReducer } from "react";
 import visit from "unist-util-visit";
 import giphy from "giphy-api";
-import * as dotenv from "dotenv";
 
 import loaderImg from "../images/loader.gif";
 import ReloadButton from "../ReloadButton";
-
-dotenv.config();
 
 // ![](giphy:hello)
 
@@ -70,7 +67,7 @@ const GiphySearch = React.memo(
             () => {
                 (async () => {
                     const results = await giphy({
-                        apiKey: process.env.GIPHY_API_KEY,
+                        apiKey: process.env.REACT_APP_GIPHY_API_KEY,
                         https: true,
                     }).search(node.search);
 

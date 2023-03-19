@@ -4,7 +4,6 @@
     "private": true,
     "dependencies": {
         "@octokit/rest": "^16.23.4",
-        "dotenv": "^16.0.3",
         "giphy-api": "^2.0.1",
         "js-base64": "^2.5.1",
         "lodash.debounce": "^4.0.8",
