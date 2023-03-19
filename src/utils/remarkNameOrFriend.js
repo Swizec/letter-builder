@@ -10,7 +10,7 @@ export function remarkNameOrFriend() {
 
                 node.value = node.label.replace(
                     nameOrFriend,
-                    '{% if subscriber.first_name != blank %} {{ subscriber.first_name | truncatewords: 1, "" | capitalize }} {% else %} $1 {% endif %}'
+                    '{% if subscriber.first_name != blank %}{{ subscriber.first_name | truncatewords: 1, "" | capitalize }}{% else %}$1{% endif %}'
                 );
                 node.children = null;
             }
