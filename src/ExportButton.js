@@ -5,7 +5,7 @@ import { Title, SubTitle, Section, Button } from "reactbulma";
 import { Consumer } from "./Context";
 
 // Borrowed from https://hackernoon.com/copying-text-to-clipboard-with-javascript-df4d4988697f
-const copyToClipboard = str => {
+const copyToClipboard = (str) => {
     const el = document.createElement("textarea"); // Create a <textarea> element
     el.value = str; // Set its value to the string that you want copied
     el.setAttribute("readonly", ""); // Make it readonly to be tamper-proof
@@ -30,14 +30,14 @@ function cleanupHTML(html) {
     const el = document.createElement("body");
     el.innerHTML = html;
 
-    el.querySelectorAll(".remove-me").forEach(el => el.remove());
+    el.querySelectorAll(".remove-me").forEach((el) => el.remove());
 
     return el.innerHTML;
 }
 
 export default class ExportButton extends React.Component {
     state = {
-        showModal: false
+        showModal: false,
     };
 
     export = (markdown, letterRef) => {
@@ -85,8 +85,9 @@ export default class ExportButton extends React.Component {
                         content: {
                             background: "rgb(241, 245, 248)",
                             maxWidth: 680,
-                            margin: "0 auto"
-                        }
+                            margin: "0 auto",
+                            inset: 150,
+                        },
                     }}
                     shouldCloseOnOverlayClick={true}
                     shouldCloseOnEsc={true}
@@ -97,9 +98,10 @@ export default class ExportButton extends React.Component {
                         style={{
                             display: "flex",
                             flexDirection: "column",
+                            justifyContent: "center",
                             background: "rgb(241, 245, 248)",
                             padding: 0,
-                            height: "100%"
+                            height: "100%",
                         }}
                     >
                         <Section
@@ -109,15 +111,11 @@ export default class ExportButton extends React.Component {
                             <SubTitle>
                                 Use Cmd+V in your favorite email sending app 💌
                                 <br />
-                                <br />⏳ Saved some time? Consider supporting
-                                this free tool 👇
+                                <br />⏳ Saved some time? Yay! <br />
+                                Not trying to monetize, so I'm just happy for ya
+                                🤘
                             </SubTitle>
                         </Section>
-                        <iframe
-                            src="https://checkoutpage.co/checkout/5bf1f1de674864001494c292/techletter-app--build-better-newsletters--"
-                            style={{ flexGrow: 1 }}
-                            title="Checkout page"
-                        />
                     </Section>
                 </ReactModal>
             </div>
