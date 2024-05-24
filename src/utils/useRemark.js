@@ -25,6 +25,7 @@ export const remarkCompile = (input) =>
                 domains: [
                     "m.twitter.com",
                     "twitter.com",
+                    "x.com",
                     "youtube.com",
                     "youtu.be",
                     "instagram.com",
@@ -64,14 +65,11 @@ export const remarkCompile = (input) =>
 export default function useRemark(input) {
     const [rendered, setRendered] = useState("");
 
-    useEffect(
-        () => {
-            remarkCompile(input)
-                .then((output) => setRendered(output.contents))
-                .catch((err) => console.error(err));
-        },
-        [input]
-    );
+    useEffect(() => {
+        remarkCompile(input)
+            .then((output) => setRendered(output.contents))
+            .catch((err) => console.error(err));
+    }, [input]);
 
     return rendered;
 }
