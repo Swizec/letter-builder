@@ -3,7 +3,7 @@ import visit from "unist-util-visit";
 // copied from https://github.com/Swizec/remark-code-screenshot/blob/master/src/index.js
 
 function getScreenshotUrl(src, codeType = "javascript") {
-    return `https://pifc233qp6.execute-api.us-east-1.amazonaws.com/dev/code?type=code&code=${encodeURIComponent(
+    return `https://mskj2vd0r9.execute-api.us-east-1.amazonaws.com/dev2/code?type=code&code=${encodeURIComponent(
         src
     )}&codeType=${codeType}&urlencoded=true`;
 }
