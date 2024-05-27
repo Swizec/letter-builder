@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import remark from "remark";
 import remark2react from "remark-react";
 
@@ -44,12 +44,21 @@ export const remarkCompile = (input) =>
                     screenshot: Screenshot,
                     githubLink: GithubLink,
                     giphySearch: GiphySearch,
+                    image: ({ node }) => (
+                        <img
+                            src={node.url}
+                            alt={node.alt}
+                            title={node.alt}
+                            style={{ maxWidth: "600px" }}
+                        />
+                    ),
                 },
                 toHast: {
                     handlers: {
                         screenshot: customHandler("screenshot"),
                         githubLink: customHandler("githubLink"),
                         giphySearch: customHandler("giphySearch"),
+                        image: customHandler("image"),
                     },
                 },
             })
