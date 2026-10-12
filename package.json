@@ -2,6 +2,9 @@
     "name": "letter-builder",
     "version": "0.1.0",
     "private": true,
+    "engines": {
+        "node": "24.x"
+    },
     "dependencies": {
         "@octokit/rest": "^16.23.4",
         "giphy-api": "^2.0.1",
@@ -26,8 +29,8 @@
         "react-scripts": "2.1.1"
     },
     "scripts": {
-        "start": "react-scripts start",
-        "build": "react-scripts build",
+        "start": "react-scripts --openssl-legacy-provider start",
+        "build": "react-scripts --openssl-legacy-provider build",
         "test": "react-scripts test",
         "eject": "react-scripts eject",
         "build:chrome": "microbundle",
