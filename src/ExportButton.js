@@ -109,11 +109,14 @@ export default class ExportButton extends React.Component {
                         >
                             <Title>Letter copied to clipboard.</Title>
                             <SubTitle>
-                                Use Cmd+V in your favorite email sending app 💌
+                                Use Cmd+V in your favorite email sending app{" "}
+                                <span role="img" aria-label="love letter">💌</span>
                                 <br />
-                                <br />⏳ Saved some time? Yay! <br />
-                                Not trying to monetize, so I'm just happy for ya
-                                🤘
+                                <br />
+                                <span role="img" aria-label="hourglass">⏳</span>{" "}
+                                Saved some time? Yay! <br />
+                                Not trying to monetize, so I'm just happy for ya{" "}
+                                <span role="img" aria-label="rock on">🤘</span>
                             </SubTitle>
                         </Section>
                     </Section>

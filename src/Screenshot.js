@@ -21,7 +21,7 @@ function Screenshot({ node }) {
             if (response.status === "success") {
                 setImage(response.url);
             } else {
-                throw "Screenshot error";
+                throw new Error("Screenshot error");
             }
         } catch (e) {
             setImage(errorImg);

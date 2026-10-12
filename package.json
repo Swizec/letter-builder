@@ -28,6 +28,9 @@
         "microbundle": "^0.11.0",
         "react-scripts": "2.1.1"
     },
+    "resolutions": {
+        "microbundle/brotli-size": "4.0.0"
+    },
     "scripts": {
         "start": "react-scripts --openssl-legacy-provider start",
         "build": "react-scripts --openssl-legacy-provider build",
